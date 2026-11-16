@@ -1,0 +1,12 @@
+# Equipment swap: the CNC step is replaced by a forge press. Config only, no code change.
+name: forge-press
+description: A forge press takes the place of the CNC in the same cell.
+extends: baseline.yaml
+overrides:
+  cell.stations.cnc:
+    id: press
+    type: forge_press
+    buffer: 2
+    params: {cycle_time: {dist: normal, mean: 60, sd: 5}, mtbf_h: 10, mttr_min: 30, scrap_rate: 0.01}
+    asset: {usd: assets/equipment/forge_press_proxy.usd}
+  part_types.bracket.routing: [infeed, robot, press, inspect, outfeed]

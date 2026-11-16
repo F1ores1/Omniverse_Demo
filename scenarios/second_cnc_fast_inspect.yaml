@@ -1,0 +1,7 @@
+# Capital option C: a second CNC plus a faster inspection step.
+name: second-cnc-fast-inspect
+description: Two CNCs, and inspection cut from 150 s to 100 s.
+extends: baseline.yaml
+overrides:
+  cell.stations.cnc.count: 2
+  cell.stations.inspect.params.cycle_time: {dist: normal, mean: 100, sd: 8}

@@ -1,0 +1,44 @@
+# Baseline machining cell: conveyor in -> robot -> CNC -> inspection -> conveyor out.
+# Times are seconds unless the field name says otherwise. Numbers are illustrative.
+name: baseline
+description: One CNC and one CMM inspection station, with raw stock always available.
+
+cell:
+  name: machining-cell-a
+  usd_stage: assets/cells/machining_cell_a.usda
+  stations:
+    - id: infeed
+      type: conveyor
+      params: {transit_time: 30, slots: 4}
+      asset: {usd: assets/equipment/conveyor.usd, variant: straight_3m}
+    - id: robot
+      type: robot
+      params: {handling_time: {dist: triangular, low: 20, mode: 25, high: 35}}
+      asset: {usd: assets/equipment/robot_arm.usd}
+    - id: cnc
+      type: cnc
+      buffer: 2
+      params:
+        cycle_time: {dist: normal, mean: 240, sd: 12}
+        mtbf_h: 6
+        mttr_min: 15
+        tool_change_every: 40
+        tool_change_time: 300
+      asset: {usd: assets/equipment/cnc_proxy.usd, variant: five_axis}
+    - id: inspect
+      type: inspection
+      buffer: 2
+      params: {cycle_time: {dist: normal, mean: 150, sd: 10}, fail_rate: 0.03}
+      asset: {usd: assets/equipment/cmm_proxy.usd}
+    - id: outfeed
+      type: conveyor
+      params: {transit_time: 30, slots: 4}
+      asset: {usd: assets/equipment/conveyor.usd, variant: straight_3m}
+
+part_types:
+  - name: bracket
+    routing: [infeed, robot, cnc, inspect, outfeed]
+
+source: {interarrival: null}  # null = saturated: this measures what the cell can do
+
+run: {duration_h: 80, warmup_h: 4, seed: 7, replications: 5}

@@ -1,0 +1,21 @@
+[package]
+title = "Modular Work Cell"
+version = "0.2.0"
+description = "Plug-and-play work cell builder: catalog, snap, flow form, DES run, KPI panel and 3D playback."
+category = "Simulation"
+keywords = ["factory", "workcell", "simulation", "des"]
+
+[dependencies]
+"omni.ui" = {}
+"omni.usd" = {}
+"omni.kit.uiapp" = {}
+"simcore" = {}  # the headless core, loaded as its own extension so Kit reloads this one when simcore changes
+
+[[python.module]]
+name = "factory_workcell"
+
+[settings.exts."factory.workcell"]
+# Isaac Sim's Python packages. Appended last, so they only fill gaps (pydantic, yaml, scipy for cuMotion).
+isaac_site_packages = "C:/isaacsim/env/Lib/site-packages"
+# Robot solver. Enabled on demand; the rest of the extension works without it.
+robot_solver_extension = "isaacsim.robot_motion.cumotion"

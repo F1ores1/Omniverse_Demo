@@ -1,0 +1,1849 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (50000, 0, 0)
+                double radius = 500
+            }
+            dictionary Perspective = {
+                double3 position = (5.332788982829113, -13.786047127929372, 8.988083606443046)
+                double3 target = (8.135888712299009, -0.5675125820517497, 1.2014787034768393)
+            }
+            dictionary Right = {
+                double3 position = (0, -50000, 0)
+                double radius = 500
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 50000)
+                double radius = 500
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./Line1.usda"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "Plant"
+    endTimeCode = 60000000
+    metersPerUnit = 1
+    startTimeCode = 0
+    timeCodesPerSecond = 60
+    upAxis = "Z"
+)
+
+def "Render" (
+    hide_in_stage_window = true
+    no_delete = true
+)
+{
+    def "OmniverseKit"
+    {
+        def "HydraTextures" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            def RenderProduct "omni_kit_widget_viewport_ViewportTexture_0" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxSettingsParticleFieldAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </OmniverseKit_Persp>
+                token omni:rtx:ambientOcclusion:denoiserMode = "none"
+                token omni:rtx:background:source:texture:textureMode = "repeatMirrored"
+                token omni:rtx:background:source:type = "domeLight"
+                bool omni:rtx:debug:view:pixelDebug:enableFixedTextPos = 1
+                token omni:rtx:directLighting:sampledLighting:denoisingTechnique = "None"
+                bool omni:rtx:dlss:frameGeneration = 1
+                bool omni:rtx:indirectDiffuse:denoiser:enabled = 0
+                bool omni:rtx:post:registeredCompositing:invertColorCorrection = 1
+                bool omni:rtx:post:registeredCompositing:invertToneMap = 1
+                bool omni:rtx:pt:adaptiveSampling:filterError = 0
+                uint omni:rtx:pt:adaptiveSampling:fixedSppIterations = 2
+                uint omni:rtx:pt:maxSamplesPerLaunch = 2073600
+                uint omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
+                bool omni:rtx:reflections:denoiser:enabled = 0
+                token omni:rtx:rendermode = "RealTimePathTracing"
+                color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
+                bool omni:rtx:rt:demoire = 0
+                bool omni:rtx:rt:lightcache:spatialCache:dontResolveConflicts = 1
+                int omni:rtx:rt:sss:samples = 1
+                uint omni:rtx:rtpt:maxVolumeBounces = 15
+                float omni:rtx:rtpt:modulatingRoughnessThreshold = 0.08
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1317, 957)
+            }
+        }
+    }
+
+    def RenderSettings "OmniverseGlobalRenderSettings" (
+        prepend apiSchemas = ["OmniRtxSettingsGlobalRtAdvancedAPI_1", "OmniRtxSettingsGlobalPtAdvancedAPI_1"]
+        no_delete = true
+    )
+    {
+        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+    }
+
+    def "Vars" (
+        hide_in_stage_window = true
+        no_delete = true
+    )
+    {
+        def RenderVar "LdrColor" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            uniform string sourceName = "LdrColor"
+            uniform token sourceType = "raw"
+        }
+    }
+}
+
+over "OmniverseKit_Persp" (
+    prepend apiSchemas = ["OmniRtxCameraAutoExposureAPI_1", "OmniRtxCameraExposureAPI_1"]
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float exposure:fStop = 5
+    float exposure:responsivity = 1.1026709
+    float exposure:time = 0.02
+    float focalLength = 18.147562
+    float focusDistance = 400
+    custom uniform vector3d omni:kit:centerOfInterest = (-2.1672625738253687e-7, 6.498166151730458e-7, -15.595455733924908)
+    float3 xformOp:rotateXYZ = (60.047173, 0, -11.972683)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (5.332788982829113, -13.786047127929372, 8.988083606443046)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def Xform "Plant" (
+    kind = "assembly"
+)
+{
+    custom string factory:arrival = "saturated"
+    custom double factory:durationH = 8
+    custom string factory:flow = '["load_source_1", "conveyor_1", "robot_1", "forge_press_1", "robot_2", "buffer_1", "robot_3", "cnc_1", "robot_4", "inspection_1", "conveyor_2"]'
+    custom string factory:loadShape = "box"
+    custom string factory:moveTable = "tables/plant.yaml"
+    custom string factory:plantName = "plant"
+    custom int factory:replications = 3
+    custom int factory:seed = 1
+    custom double factory:warmupH = 0.5
+
+    def Xform "load_source_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.load_source_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "load_source"
+        custom string factory:param:arrival_dist = "exponential"
+        custom double factory:param:arrival_mean = 4
+        custom string factory:param:shape = "box"
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (0.6, 0.6, 0.1)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (0.85, 0.85, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Pad"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.2, 0.45, 0.75)]
+                double size = 1
+                float3 xformOp:scale = (0.6, 0.6, 0.1)
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Mark"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.85, 0.9)]
+                double size = 1
+                float3 xformOp:scale = (0.2, 0.2, 0.004)
+                double3 xformOp:translate = (0, 0, 0.10200000000000001)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.1)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.35)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.1)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.35)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def "Looks"
+    {
+        def Material "Status_IDLE"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_IDLE/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.5, 0.5, 0.5)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "Friction_1_0" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:dynamicFriction = 1
+            float physics:restitution = 0
+            float physics:staticFriction = 1
+        }
+
+        def Material "Status_PROCESSING"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_PROCESSING/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.15, 0.8, 0.25)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "Status_STARVED"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_STARVED/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.95, 0.8, 0.15)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "Status_BLOCKED"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_BLOCKED/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9, 0.15, 0.15)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "conveyor_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conveyor_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 4
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (3, 0.6, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (2.5, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.25, 0.85, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Belt" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (3, 0.52, 0.08)
+                double3 xformOp:translate = (0, 0, 0.76)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "RailL" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (3, 0.04, 0.17)
+                double3 xformOp:translate = (0, -0.28, 0.7650000000000001)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "RailR" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (3, 0.04, 0.17)
+                double3 xformOp:translate = (0, 0.28, 0.7650000000000001)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg00" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (-1.4, -0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg01" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (-1.4, 0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg10" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (1.4, -0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg11" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (1.4, 0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-1.4, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-1.4, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (1.4, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (1.4, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "robot_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.robot_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "robot"
+        custom string factory:param:handling_time = "8"
+        custom double factory:param:speed_scale = 1
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (0.4, 0.4, 0.9)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (4.65, -0.9999999999999998, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Arm" (
+            prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots/UniversalRobots/ur10/ur10.usd@
+        )
+        {
+            token visibility = "inherited"
+            double3 xformOp:translate = (0, 0, 0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            over "joints"
+            {
+                over "shoulder_pan_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "shoulder_lift_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "elbow_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_1_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_2_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_3_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "ee_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+            }
+
+            over "base_link"
+            {
+                custom matrix4d factory:restPose = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "shoulder_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.999999999999996, -8.74227924382226e-8, -1.5149564284540145e-8, 0), (8.742279243822262e-8, -0.9999999999999962, -1.0290720263604218e-15, 0), (-1.514956428454e-8, -2.3534892403372815e-15, 0.9999999999999999, 0), (8.881784197001252e-16, 0, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.4529571418432715, -0.8915322919856433, -1.5149564284540145e-8, 0), (0.8915322919856435, 0.4529571418432716, -1.0290720263604218e-15, 0), (6.8621042559471555e-9, -1.3506325303054397e-8, 0.9999999999999999, 0), (0, 7.771561172376096e-16, 0.1272999048233031, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "upper_arm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999088991, -8.742171897449236e-8, -0.000013497965705496394, 0), (-0.000013497965705496394, -5.901945598907332e-13, 0.9999999999089026, 0), (-8.742171897449236e-8, 0.9999999999999964, -5.901945598907332e-13, 0), (0, 1.4901161193847656e-8, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.2592744434908963, -0.510316496032081, -0.8199718512424836, 0), (0.37141204222245294, -0.7310314163715386, 0.5724038462222014, 0), (-0.8915323089179853, -0.45295710851620596, -7.168301107510858e-8, 0), (-4.863430547175085e-8, 6.282691378256544e-8, 0.12729994551943913, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "forearm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037721, -1.025707802356962e-7, -0.000013872488530623033, 0), (-0.000013872488530623033, -7.114309141798003e-13, 0.9999999999037772, 0), (-1.0257078023569451e-7, 0.9999999999999949, -7.118750033896504e-13, 0), (0.6119999885559082, 1.1548399925231934e-7, 0.1273081749677657, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.3718047906104186, -0.7318042165854108, 0.5711600356003178, 0), (-0.25871097274363514, 0.5092076382469154, 0.8208387257756792, 0), (-0.8915322934482997, -0.4529571389643972, 5.858491419316609e-8, 0), (-0.15868119354583943, 0.31232386080374375, 0.6291247612286336, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_1_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037705, -1.1771987936381967e-7, -0.000013872488529232355, 0), (-0.000013872488529232354, -8.171241461241152e-13, 0.9999999999037772, 0), (-1.177198793638239e-7, 0.9999999999999933, -8.164580123093401e-13, 0), (1.1842999458312988, 0.16394111514091492, 0.12731608748435963, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.00013650076177570213, -0.0002684076090620111, -0.9999999546624485, 0), (0.4529570433677945, -0.8915322911641611, 0.0003011230457970036, 0), (-0.8915323315679863, -0.452957063935356, -1.1771987378079254e-7, 0), (-0.5176122728712285, 0.6568546669411887, 0.3022365901594358, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_2_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037703, -1.1772137518943305e-7, -0.000013872487214597977, 0), (-1.1772136565830953e-7, 0.9999999999999931, -6.878687924970518e-10, 0), (0.000013872487214678858, -6.862357042908783e-10, -0.9999999999037772, 0), (1.184301495552063, 0.16394111514091492, 0.011616088449954987, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.8915260130513674, 0.4529694711757249, 0.00016197381782960402, 0), (0.0002870879370544142, -0.00020745891771575752, -0.9999999372706555, 0), (-0.45296940915833367, 0.8915260036272542, -0.00031499709281159247, 0), (-0.5700206327832626, 0.7600043264515269, 0.30220008396221465, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_3_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999027758, -4.577182224353056e-8, -0.000013944436693255695, 0), (-0.000013944436693255695, -3.19300141882195e-13, 0.9999999999027765, 0), (-4.577182224353056e-8, 0.9999999999999992, -3.19300141882195e-13, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.9999999585146944, 0.000024244775320148117, 0.00028702404304337034, 0), (0.000024185212621401706, -0.9999999781753037, 0.00020751980325787946, 0), (0.0002870290680501621, -0.00020751285291103157, -0.9999999372763638, 0), (-0.5700016223511977, 0.7599841298179263, 0.21000007681210542, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "root_joint" (
+                delete apiSchemas = ["PhysicsArticulationRootAPI"]
+            )
+            {
+                bool physics:jointEnabled = 0
+            }
+
+            over "ee_link"
+            {
+                custom matrix4d factory:restPose = ( (1.4875314424678265e-8, 0.9999999999999911, 1.3408563948047458e-7, 0), (0.000013813402068629799, 1.3408543375614812e-7, -0.9999999999045861, 0), (-0.999999999904595, 1.4877166831794852e-8, -0.000013813402066853442, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.00028696842228810923, -0.00020764693949054712, -0.9999999372659346, 0), (-0.000024054139522005715, 0.9999999781506376, -0.00020765385075894485, 0), (0.9999999585352606, 0.00002411372811146686, 0.00028696342125049233, 0), (-0.5700016223511977, 0.7599841298179264, 0.21000007681210542, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (0.65, 0.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Pedestal" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.4, 0.4, 0.9)
+                double3 xformOp:translate = (0, 0, 0.45)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "forge_press_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.forge_press_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "forge_press"
+        custom string factory:param:cycle_time = "normal(13, 1.5)"
+        custom double factory:param:die_change_time = 0
+        custom double factory:param:mtbf_h = 0.75
+        custom double factory:param:mttr_min = 6
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (1.4, 1.4, 2.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (5.4, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (1.65, 1.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Base" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 1.4, 0.85)
+                double3 xformOp:translate = (0, 0, 0.425)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Column" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.55, 0.3, 0.25)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 0.4, 1.45)
+                double3 xformOp:translate = (0, 0.49999999999999994, 1.575)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Crown" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.55, 0.3, 0.25)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 1.05, 0.5)
+                double3 xformOp:translate = (0, 0.175, 2.55)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Ram" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (0.7, 0.35, 0.5)
+                double3 xformOp:translate = (0, 0, 2.05)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "robot_2" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.robot_2"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "robot"
+        custom string factory:param:handling_time = "8"
+        custom double factory:param:speed_scale = 1
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (0.4, 0.4, 0.9)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (6.15, -1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Arm" (
+            prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots/UniversalRobots/ur10/ur10.usd@
+        )
+        {
+            token visibility = "inherited"
+            double3 xformOp:translate = (0, 0, 0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            over "joints"
+            {
+                over "shoulder_pan_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "shoulder_lift_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "elbow_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_1_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_2_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_3_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "ee_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+            }
+
+            over "base_link"
+            {
+                custom matrix4d factory:restPose = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "shoulder_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.999999999999996, -8.74227924382226e-8, -1.5149564284540145e-8, 0), (8.742279243822262e-8, -0.9999999999999962, -1.0290720263604218e-15, 0), (-1.514956428454e-8, -2.3534892403372815e-15, 0.9999999999999999, 0), (8.881784197001252e-16, 0, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.45298023831749884, -0.8915205570786475, -1.5149564284540145e-8, 0), (0.8915205570786477, 0.45298023831749895, -1.0290720263604218e-15, 0), (6.862454157456132e-9, -1.3506147524302725e-8, 0.9999999999999999, 0), (0, 7.771561172376096e-16, 0.1272999048233031, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "upper_arm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999088991, -8.742171897449236e-8, -0.000013497965705496394, 0), (-0.000013497965705496394, -5.901945598907332e-13, 0.9999999999089026, 0), (-8.742171897449236e-8, 0.9999999999999964, -5.901945598907332e-13, 0), (0, 1.4901161193847656e-8, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.22750102817589057, -0.4477497751633591, -0.8647331501799121, 0), (0.39170696105344066, -0.7709274140166241, 0.5022315989460641, 0), (-0.8915205767906833, -0.45298019952179286, -7.559616216080117e-8, 0), (-5.056577467854595e-8, 6.662381935029771e-8, 0.1272999521981445, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "forearm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037721, -1.025707802356962e-7, -0.000013872488530623033, 0), (-0.000013872488530623033, -7.114309141798003e-13, 0.9999999999037772, 0), (-1.0257078023569451e-7, 0.9999999999999949, -7.118750033896504e-13, 0), (0.6119999885559082, 1.1548399925231934e-7, 0.1273081749677657, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.4058158830559946, -0.7986952791291432, 0.4442964327521705, 0), (-0.20125746936294248, 0.39609942083008665, 0.8958798356050294, 0), (-0.891520555054738, -0.45298024230079914, 4.557246882252283e-8, 0), (-0.13923556095953593, 0.27403243179123404, 0.6565198678728023, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_1_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037705, -1.1771987936381967e-7, -0.000013872488529232355, 0), (-0.000013872488529232354, -8.171241461241152e-13, 0.9999999999037772, 0), (-1.177198793638239e-7, 0.9999999999999933, -8.164580123093401e-13, 0), (1.1842999458312988, 0.16394111514091492, 0.12731608748435963, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.0001278552585166942, -0.0002513749749825221, -0.9999999602318277, 0), (0.4529801423648186, -0.8915205612249326, 0.0002820218631955525, 0), (-0.8915205966640276, -0.4529801604086042, -1.1771987428548394e-7, 0), (-0.5176301904893705, 0.6568430301560911, 0.4022345286098393, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_2_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037703, -1.1772137518943305e-7, -0.000013872487214597977, 0), (-1.1772136565830953e-7, 0.9999999999999931, -6.878687924970518e-10, 0), (0.000013872487214678858, -6.862357042908783e-10, -0.9999999999037772, 0), (1.184301495552063, 0.16394111514091492, 0.011616088449954987, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.8915141750368955, 0.4529925991617604, 0.0004252210683355422, 0), (0.0005131309636212741, -0.00007117669582542714, -0.9999998658152377, 0), (-0.4529925081112252, 0.8915142736033743, -0.00029589956218179127, 0), (-0.5700412229263669, 0.7599913325226495, 0.40220023202572663, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_3_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999027758, -4.577182224353056e-8, -0.000013944436693255695, 0), (-0.000013944436693255695, -3.19300141882195e-13, 0.9999999999027765, 0), (-4.577182224353056e-8, 0.9999999999999992, -3.19300141882195e-13, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.9999998658800703, -0.00007065198151359948, 0.0005130771286284323, 0), (-0.0000706885188462984, -0.9999999949672476, 0.00007119437896517014, 0), (0.000513072096022295, -0.00007123063807846411, -0.999999865841602, 0), (-0.5700013732398421, 0.7599837010987089, 0.3100002296310783, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "root_joint" (
+                delete apiSchemas = ["PhysicsArticulationRootAPI"]
+            )
+            {
+                bool physics:jointEnabled = 0
+            }
+
+            over "ee_link"
+            {
+                custom matrix4d factory:restPose = ( (1.4875314424678265e-8, 0.9999999999999911, 1.3408563948047458e-7, 0), (0.000013813402068629799, 1.3408543375614812e-7, -0.9999999999045861, 0), (-0.999999999904595, 1.4877166831794852e-8, -0.000013813402066853442, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.0005130114375443193, -0.00007136471890522728, -0.9999998658631624, 0), (0.00007081962224256158, 0.9999999949484202, -0.00007132839683654602, 0), (0.9999998659019143, -0.00007078302045895028, 0.0005130164889762807, 0), (-0.5700013732398421, 0.7599837010987089, 0.3100002296310783, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (0.65, 0.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Pedestal" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.4, 0.4, 0.9)
+                double3 xformOp:translate = (0, 0, 0.45)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "robot_3" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.robot_3"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "robot"
+        custom string factory:param:handling_time = "8"
+        custom double factory:param:speed_scale = 1
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (0.4, 0.4, 0.9)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (9.05, -1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Arm" (
+            prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots/UniversalRobots/ur10/ur10.usd@
+        )
+        {
+            token visibility = "inherited"
+            double3 xformOp:translate = (0, 0, 0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            over "joints"
+            {
+                over "shoulder_pan_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "shoulder_lift_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "elbow_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_1_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_2_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_3_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "ee_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+            }
+
+            over "base_link"
+            {
+                custom matrix4d factory:restPose = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "shoulder_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.999999999999996, -8.74227924382226e-8, -1.5149564284540145e-8, 0), (8.742279243822262e-8, -0.9999999999999962, -1.0290720263604218e-15, 0), (-1.514956428454e-8, -2.3534892403372815e-15, 0.9999999999999999, 0), (0, 0, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.47984242792970616, -0.8773546856081208, -1.5149564284540145e-8, 0), (0.877354685608121, 0.47984242792970627, -1.0290720263604218e-15, 0), (7.269404611232072e-9, -1.329154071617032e-8, 0.9999999999999999, 0), (0, 0, 0.1272999048233031, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "upper_arm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999088991, -8.742171897449236e-8, -0.000013497965705496394, 0), (-0.000013497965705496394, -5.901945598907332e-13, 0.9999999999089026, 0), (-8.742171897449236e-8, 0.9999999999999964, -5.901945598907332e-13, 0), (0, 1.4901161193847656e-8, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.38065065676748605, -0.6959901829959604, -0.6088536299273674, 0), (0.29215375733912236, -0.5341806106069068, 0.7932825835251053, 0), (-0.8773546942799791, -0.4798424120738833, -5.322656303753975e-8, 0), (-4.087934435403895e-8, 4.369044370733377e-8, 0.12729992449720184, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "forearm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037721, -1.025707802356962e-7, -0.000013872488530623033, 0), (-0.000013872488530623033, -7.114309141798003e-13, 0.9999999999037772, 0), (-1.0257078023569451e-7, 0.9999999999999949, -7.118750033896504e-13, 0), (0.6119999885559082, 1.1548399925231934e-7, 0.1273081749677657, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.4503012946178433, -0.8233409703739973, 0.345453890655612, 0), (-0.16576340713273924, 0.3030856041201005, 0.9384357247200791, 0), (-0.8773546813696503, -0.4798424356794209, 3.5434142251475675e-8, 0), (-0.23296201971952968, 0.4259528433344133, 0.4999195439647054, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_1_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037705, -1.1771987936381967e-7, -0.000013872488529232355, 0), (-0.000013872488529232354, -8.171241461241152e-13, 0.9999999999037772, 0), (-1.177198793638239e-7, 0.9999999999999933, -8.164580123093401e-13, 0), (1.1842999458312988, 0.16394111514091492, 0.12731608748435963, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (-0.000002012279760751742, 0.000003924628652737316, -0.9999999999902748, 0), (0.4798423512249613, -0.8773547275483639, -0.0000044088685534084274, 0), (-0.8773547275571342, -0.4798423512291662, -1.1771987947730138e-7, 0), (-0.6344934246942628, 0.8184660849814286, 0.30220110229634656, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_2_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037703, -1.1772137518943305e-7, -0.000013872487214597977, 0), (-1.1772136565830953e-7, 0.9999999999999931, -6.878687924970518e-10, 0), (0.000013872487214678858, -6.862357042908783e-10, -0.9999999999037772, 0), (1.184301495552063, 0.16394111514091492, 0.011616088449954987, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.8773480464060395, 0.4798545113891917, 0.0002310128709096814, 0), (0.0002072210650932557, 0.00010254747414739513, -0.999999973271723, 0), (-0.4798545222532935, 0.8773480708267708, -0.000009466136832902704, 0), (-0.6900123953522375, 0.9199753637406269, 0.30219994603799794, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_3_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999027758, -4.577182224353056e-8, -0.000013944436693255695, 0), (-0.000013944436693255695, -3.19300141882195e-13, 0.9999999999027765, 0), (-4.577182224353056e-8, 0.9999999999999992, -3.19300141882195e-13, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.9999999396229554, -0.00027901444770036415, 0.000207135280318258, 0), (-0.0002789932108762373, -0.9999999558233306, -0.00010254816538494235, 0), (0.00020716388358743885, 0.00010249036985677882, -0.9999999732894251, 0), (-0.6900012071138555, 0.9199835619761371, 0.2099999357187453, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "root_joint" (
+                delete apiSchemas = ["PhysicsArticulationRootAPI"]
+            )
+            {
+                bool physics:jointEnabled = 0
+            }
+
+            over "ee_link"
+            {
+                custom matrix4d factory:restPose = ( (1.4875314424678265e-8, 0.9999999999999911, 1.3408563948047458e-7, 0), (0.000013813402068629799, 1.3408543375614812e-7, -0.9999999999045861, 0), (-0.999999999904595, 1.4877166831794852e-8, -0.000013813402066853442, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.00020710319717423458, 0.00010235630167229441, -0.9999999733157265, 0), (0.0002791242732643142, 0.9999999558004942, 0.0001024141074100717, 0), (0.9999999395989513, -0.0002791454761044161, 0.00020707461789335857, 0), (-0.6900012071138555, 0.9199835619761372, 0.20999993571874553, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (0.65, 0.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Pedestal" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.4, 0.4, 0.9)
+                double3 xformOp:translate = (0, 0, 0.45)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "cnc_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.cnc_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "cnc"
+        custom string factory:param:cycle_time = "normal(13, 2)"
+        custom double factory:param:mtbf_h = 1.5
+        custom double factory:param:mttr_min = 8
+        custom double factory:param:scrap_rate = 0
+        custom int factory:param:tool_change_every = 25
+        custom double factory:param:tool_change_time = 90
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (1.4, 1.6, 2.1)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (9.799999999999999, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (1.65, 1.85, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Base" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 1.6, 0.85)
+                double3 xformOp:translate = (0, 0, 0.425)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Back" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.8, 0.82, 0.85)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 0.06, 1.25)
+                double3 xformOp:translate = (0, 0.77, 1.475)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Column" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.4, 0.39, 1.19)
+                double3 xformOp:translate = (0, 0.545, 1.445)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Roof" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.8, 0.82, 0.85)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 1.6, 0.06)
+                double3 xformOp:translate = (0, 0, 2.0700000000000003)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Spindle" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (0.2, 0.2, 0.54)
+                double3 xformOp:translate = (0, 0, 1.77)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "robot_4" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.robot_4"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "robot"
+        custom string factory:param:handling_time = "8"
+        custom double factory:param:speed_scale = 1
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (0.4, 0.4, 0.9)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (10.799999999999997, -0.7500000000000012, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Arm" (
+            prepend references = @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Robots/UniversalRobots/ur10/ur10.usd@
+        )
+        {
+            token visibility = "inherited"
+            double3 xformOp:translate = (0, 0, 0.9)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            over "joints"
+            {
+                over "shoulder_pan_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "shoulder_lift_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "elbow_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_1_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_2_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "wrist_3_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+
+                over "ee_joint"
+                {
+                    bool physics:jointEnabled = 0
+                }
+            }
+
+            over "base_link"
+            {
+                custom matrix4d factory:restPose = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "shoulder_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.999999999999996, -8.74227924382226e-8, -1.5149564284540145e-8, 0), (8.742279243822262e-8, -0.9999999999999962, -1.0290720263604218e-15, 0), (-1.514956428454e-8, -2.3534892403372815e-15, 0.9999999999999999, 0), (0, 0, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (-0.8915269513071976, 0.4529676534730634, -1.5149564284540145e-8, 0), (-0.4529676534730635, -0.8915269513071978, -1.0290720263604218e-15, 0), (-1.3506245326364828e-8, 6.862261667662034e-9, 0.9999999999999999, 0), (0, 0, 0.1272999048233031, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "upper_arm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999088991, -8.742171897449236e-8, -0.000013497965705496394, 0), (-0.000013497965705496394, -5.901945598907332e-13, 0.9999999999089026, 0), (-8.742171897449236e-8, 0.9999999999999964, -5.901945598907332e-13, 0), (0, 1.4901161193847656e-8, 0.1272999048233031, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.490323929222172, -0.24912428596634942, -0.8351763493860968, 0), (-0.7445821914995986, 0.37830793631055065, -0.5499822410097507, 0), (0.4529677742773608, 0.8915268899288508, -7.301287651502194e-8, 0), (7.761724774013601e-8, -2.272163357464052e-8, 0.1273000523444202, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "forearm_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037721, -1.025707802356962e-7, -0.000013872488530623033, 0), (-0.000013872488530623033, -7.114309141798003e-13, 0.9999999999037772, 0), (-1.0257078023569451e-7, 0.9999999999999949, -7.118750033896504e-13, 0), (0.6119999885559082, 1.1548399925231934e-7, 0.1273081749677657, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.7531834389861461, -0.38267818030600126, 0.5350440332857569, 0), (0.4770061546224545, -0.24235768196405938, -0.8448241725029575, 0), (0.4529678086677919, 0.8915268724557303, 5.487928330886849e-8, 0), (-0.3000681577256614, 0.15245900754459363, 0.6384255686981882, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_1_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037705, -1.1771987936381967e-7, -0.000013872488529232355, 0), (-0.000013872488529232354, -8.171241461241152e-13, 0.9999999999037772, 0), (-1.177198793638239e-7, 0.9999999999999933, -8.164580123093401e-13, 0), (1.1842999458312988, 0.16394111514091492, 0.12731608748435963, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (-0.0002687015629181798, 0.000136390069560236, 0.9999999545986094, 0), (0.8915268712305715, -0.452967710848204, 0.00030133497495544347, 0), (0.45296773138193736, 0.8915269117231895, 1.1771987423749486e-7, 0), (-0.6568484363981888, 0.5176201135358183, 0.3322335348689044, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_2_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999037703, -1.1772137518943305e-7, -0.000013872487214597977, 0), (-1.1772136565830953e-7, 0.9999999999999931, -6.878687924970518e-10, 0), (0.000013872487214678858, -6.862357042908783e-10, -0.9999999999037772, 0), (1.184301495552063, 0.16394111514091492, 0.011616088449954987, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.45295541803146944, 0.8915331229528983, -0.0002827610122151482, 0), (0.00012820010660146463, -0.0003822964209985079, -0.9999999187070869, 0), (-0.891533158576096, 0.4529553449594125, -0.0002874578765869983, 0), (-0.7599988245234108, 0.5700270414304145, 0.33220010657288224, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "wrist_3_link"
+            {
+                custom matrix4d factory:restPose = ( (-0.9999999999027758, -4.577182224353056e-8, -0.000013944436693255695, 0), (-0.000013944436693255695, -3.19300141882195e-13, 0.9999999999027765, 0), (-4.577182224353056e-8, 0.9999999999999992, -3.19300141882195e-13, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.9999999842226218, 0.00012301758207787538, 0.00012814613395978707, 0), (0.00012296856877578937, -0.9999999193178124, 0.00038241744300574913, 0), (0.00012819316768985953, -0.00038240167902523186, -0.999999918667731, 0), (-0.7600021689791223, 0.569984319977569, 0.24000010396782134, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+
+            over "root_joint" (
+                delete apiSchemas = ["PhysicsArticulationRootAPI"]
+            )
+            {
+                bool physics:jointEnabled = 0
+            }
+
+            over "ee_link"
+            {
+                custom matrix4d factory:restPose = ( (1.4875314424678265e-8, 0.9999999999999911, 1.3408563948047458e-7, 0), (0.000013813402068629799, 1.3408543375614812e-7, -0.9999999999045861, 0), (-0.999999999904595, 1.4877166831794852e-8, -0.000013813402066853442, 0), (1.184301495552063, 0.25614112615585327, 0.011616084724664688, 1) )
+                bool physics:rigidBodyEnabled = 0
+                matrix4d xformOp:transform = ( (0.00012813253517021816, -0.0003825357715880478, -0.9999999186242158, 0), (-0.0001228375169704826, 0.9999999192826398, -0.00038255151132415464, 0), (0.9999999842464994, 0.00012288652427069156, 0.00012808553508492781, 0), (-0.7600021689791223, 0.569984319977569, 0.24000010396782134, 1) )
+                uniform token[] xformOpOrder = ["xformOp:transform"]
+            }
+        }
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (0.65, 0.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Pedestal" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.4, 0.4, 0.9)
+                double3 xformOp:translate = (0, 0, 0.45)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+    }
+
+    def Xform "inspection_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.inspection_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "inspection"
+        custom string factory:param:cycle_time = "tri(8, 9, 12)"
+        custom double factory:param:fail_rate = 0.02
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (1.2, 1.2, 1.9)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (11.799999999999997, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (1.45, 1.45, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Table" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (1.2, 1.2, 0.85)
+                double3 xformOp:translate = (0, 0, 0.425)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "LegL" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.3, 0.65, 0.55)]
+                double size = 1
+                float3 xformOp:scale = (0.12, 0.15, 0.9)
+                double3 xformOp:translate = (-0.54, 0.475, 1.3)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "LegR" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.3, 0.65, 0.55)]
+                double size = 1
+                float3 xformOp:scale = (0.12, 0.15, 0.9)
+                double3 xformOp:translate = (0.54, 0.475, 1.3)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Bridge" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.3, 0.65, 0.55)]
+                double size = 1
+                float3 xformOp:scale = (1.2, 0.25, 0.15)
+                double3 xformOp:translate = (0, 0.475, 1.825)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Probe" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.5)
+                double3 xformOp:translate = (0, 0.42999999999999994, 1.5)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "conveyor_2" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conveyor_2"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 4
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (3, 0.6, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (14.599999999999996, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.25, 0.85, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Belt" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (3, 0.52, 0.08)
+                double3 xformOp:translate = (0, 0, 0.76)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "RailL" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (3, 0.04, 0.17)
+                double3 xformOp:translate = (0, -0.28, 0.7650000000000001)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "RailR" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (3, 0.04, 0.17)
+                double3 xformOp:translate = (0, 0.28, 0.7650000000000001)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg00" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (-1.4, -0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg01" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (-1.4, 0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg10" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (1.4, -0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Leg11" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (0.06, 0.06, 0.68)
+                double3 xformOp:translate = (1.4, 0.25, 0.34)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-1.4, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-1.4, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (1.4, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (1.4, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "buffer_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.buffer_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "buffer"
+        custom int factory:param:slots = 4
+        custom bool factory:show3d = 1
+        custom double3 factory:size = (1.6, 0.6, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (7.6000000000000005, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (1.85, 0.85, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Top" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.45, 0.45, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (1.6, 0.6, 0.05)
+                double3 xformOp:translate = (0, 0, 0.775)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Stand" (
+                prepend apiSchemas = ["PhysicsCollisionAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.62, 0.64, 0.67)]
+                double size = 1
+                float3 xformOp:scale = (1.4, 0.4, 0.75)
+                double3 xformOp:translate = (0, 0, 0.375)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Slot0"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (0.18, 0.18, 0.004)
+                double3 xformOp:translate = (0.7000000000000001, 0, 0.802)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Slot1"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (0.18, 0.18, 0.004)
+                double3 xformOp:translate = (0.23333333333333334, 0, 0.802)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Slot2"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (0.18, 0.18, 0.004)
+                double3 xformOp:translate = (-0.2333333333333334, 0, 0.802)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Slot3"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.1, 0.11, 0.13)]
+                double size = 1
+                float3 xformOp:scale = (0.18, 0.18, 0.004)
+                double3 xformOp:translate = (-0.7000000000000001, 0, 0.802)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-0.7000000000000001, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-0.7000000000000001, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0.7000000000000001, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0.7000000000000001, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+}
+
+def "Environment"
+{
+    def DomeLight "Dome"
+    {
+        float inputs:intensity = 250
+    }
+
+    def DistantLight "Sun"
+    {
+        float inputs:angle = 2
+        float inputs:intensity = 900
+        float3 xformOp:rotateXYZ = (-50, 0, 30)
+        double3 xformOp:translate = (0, 25, 12)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+    }
+
+    def Cube "Floor"
+    {
+        float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+        color3f[] primvars:displayColor = [(0.22, 0.24, 0.27)]
+        double size = 1
+        float3 xformOp:scale = (80, 80, 0.02)
+        double3 xformOp:translate = (0, 0, -0.01)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+}
+
+def PhysicsScene "PhysicsScene" (
+    prepend apiSchemas = ["NewtonSceneAPI", "PhysxSceneAPI"]
+)
+{
+    vector3f physics:gravityDirection = (0, 0, -1)
+    float physics:gravityMagnitude = 9.81
+}
+
+over "OmniverseKit_Front" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 5000
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -50000)
+    token projection = "orthographic"
+    float verticalAperture = 5000
+    float3 xformOp:rotateXYZ = (90, -1.2722219e-14, 90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (50000, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Right" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 5000
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -50000)
+    token projection = "orthographic"
+    float verticalAperture = 5000
+    float3 xformOp:rotateXYZ = (90, 7.06225e-31, -1.2722219e-14)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, -50000, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Top" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 5000
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -50000)
+    token projection = "orthographic"
+    float verticalAperture = 5000
+    float3 xformOp:rotateXYZ = (1.2722219e-14, -7.016709e-15, -90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 50000)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+

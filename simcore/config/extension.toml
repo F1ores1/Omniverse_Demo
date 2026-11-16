@@ -1,0 +1,11 @@
+# Kit reads <ext>/config/extension.toml, so this sits in the config package (Python ignores it). Lets Kit load simcore as an extension, so Kit watches this folder and re-reads the code when a file is saved.
+# simcore stays plain Python: nothing here imports omni/Kit, and it still runs headless (CLI, tests) without this file.
+[package]
+title = "SimCore"
+version = "0.2.0"
+description = "Headless work cell simulation core: DES engine, equipment, config, metrics, kinematics, USD helpers."
+category = "Simulation"
+
+[[python.module]]
+name = "simcore"
+path = ".."  # the package is the parent folder (simcore/); its parent (the repo root) goes on sys.path

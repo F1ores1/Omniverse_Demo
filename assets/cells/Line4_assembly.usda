@@ -1,0 +1,4635 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (50000, 0, 0)
+                double radius = 500
+            }
+            dictionary Perspective = {
+                double3 position = (55.25325519582791, -63.38868492363062, 95.34076015986133)
+                double3 target = (56.781067545079544, 29.90532646464365, -5.382410288710673)
+            }
+            dictionary Right = {
+                double3 position = (0, -50000, 0)
+                double radius = 500
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 50000)
+                double radius = 500
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./Line4_assembly.usda"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "Plant"
+    endTimeCode = 60000000
+    metersPerUnit = 1
+    startTimeCode = 0
+    timeCodesPerSecond = 60
+    upAxis = "Z"
+)
+
+def "Render" (
+    hide_in_stage_window = true
+    no_delete = true
+)
+{
+    def "OmniverseKit"
+    {
+        def "HydraTextures" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            def RenderProduct "omni_kit_widget_viewport_ViewportTexture_0" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxSettingsParticleFieldAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </OmniverseKit_Persp>
+                token omni:rtx:ambientOcclusion:denoiserMode = "none"
+                token omni:rtx:background:source:texture:textureMode = "repeatMirrored"
+                token omni:rtx:background:source:type = "domeLight"
+                bool omni:rtx:debug:view:pixelDebug:enableFixedTextPos = 1
+                token omni:rtx:directLighting:sampledLighting:denoisingTechnique = "None"
+                bool omni:rtx:dlss:frameGeneration = 1
+                bool omni:rtx:indirectDiffuse:denoiser:enabled = 0
+                bool omni:rtx:post:registeredCompositing:invertColorCorrection = 1
+                bool omni:rtx:post:registeredCompositing:invertToneMap = 1
+                bool omni:rtx:pt:adaptiveSampling:filterError = 0
+                uint omni:rtx:pt:adaptiveSampling:fixedSppIterations = 2
+                uint omni:rtx:pt:maxSamplesPerLaunch = 2073600
+                uint omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
+                bool omni:rtx:reflections:denoiser:enabled = 0
+                token omni:rtx:rendermode = "RealTimePathTracing"
+                color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
+                bool omni:rtx:rt:demoire = 0
+                bool omni:rtx:rt:lightcache:spatialCache:dontResolveConflicts = 1
+                int omni:rtx:rt:sss:samples = 1
+                uint omni:rtx:rtpt:maxVolumeBounces = 15
+                float omni:rtx:rtpt:modulatingRoughnessThreshold = 0.08
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1343, 993)
+            }
+        }
+    }
+
+    def RenderSettings "OmniverseGlobalRenderSettings" (
+        prepend apiSchemas = ["OmniRtxSettingsGlobalRtAdvancedAPI_1", "OmniRtxSettingsGlobalPtAdvancedAPI_1"]
+        no_delete = true
+    )
+    {
+        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+    }
+
+    def "Vars" (
+        hide_in_stage_window = true
+        no_delete = true
+    )
+    {
+        def RenderVar "LdrColor" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            uniform string sourceName = "LdrColor"
+            uniform token sourceType = "raw"
+        }
+    }
+}
+
+over "OmniverseKit_Persp" (
+    prepend apiSchemas = ["OmniRtxCameraAutoExposureAPI_1", "OmniRtxCameraExposureAPI_1"]
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (0.01, 10000)
+    float exposure:fStop = 5
+    float exposure:responsivity = 1.1026709
+    float exposure:time = 0.02
+    float focalLength = 18.147562
+    float focusDistance = 400
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 6.84508001177924e-7, -137.29990472211577)
+    float3 xformOp:rotateXYZ = (42.810974, 0, -0.93821)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (55.25325519582791, -63.38868492363062, 95.34076015986133)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def Xform "Plant" (
+    kind = "assembly"
+)
+{
+    custom string factory:arrival = "saturated"
+    custom double factory:durationH = 8
+    custom string factory:flow = '["receiving", "conv_in", "kitting", "kit_buffer", ["cnc_A", "cnc_B", "cnc_C"], "deburr", "wash", "cmm_1", "machining_buffer", "conv_to_press", ["press_A", "press_B"], "trim", "conv_to_body", "sub_01", "turn_1", "sub_02", "sub_03", "sub_04", "sub_05", "sub_06", "sub_07", "sub_08", "sub_09", "sub_10", "sub_11", "sub_12", "sub_buffer", "body_shop", "turn_2", "conv_to_paint", "paint_shop", "cure_oven", "paint_buffer", "final_01", "final_02", "final_03", "final_04", "turn_3", "final_05", "final_06", "final_07", "final_08", "final_09", "final_10", "final_assembly_zone", "conv_to_test", ["eol_test_A", "eol_test_B"], "packing", "shipping"]'
+    custom string factory:loadShape = "box"
+    custom string factory:plantName = "line4_assembly"
+    custom int factory:replications = 3
+    custom int factory:seed = 1
+    custom double factory:warmupH = 0.5
+
+    def Xform "receiving" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.receiving"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(35, 4)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (16, 14, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (8, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (16.25, 14.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (16, 14, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (16.06, 14.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def "Looks"
+    {
+        def Material "Status_IDLE"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_IDLE/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.5, 0.5, 0.5)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "Friction_1_0" (
+            prepend apiSchemas = ["PhysicsMaterialAPI"]
+        )
+        {
+            float physics:dynamicFriction = 1
+            float physics:restitution = 0
+            float physics:staticFriction = 1
+        }
+
+        def Material "Status_STARVED"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_STARVED/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.95, 0.8, 0.15)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "Status_PROCESSING"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_PROCESSING/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.15, 0.8, 0.25)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+
+        def Material "Status_BLOCKED"
+        {
+            token outputs:surface.connect = </Plant/Looks/Status_BLOCKED/Shader.outputs:surface>
+
+            def Shader "Shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9, 0.15, 0.15)
+                float inputs:opacity = 0.5
+                float inputs:roughness = 0.8
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "conv_in" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conv_in"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 12
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (8, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (21.8, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (8.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (8, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (8.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-3.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-3.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (3.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (3.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "kitting" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.kitting"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(48, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (10, 8, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (32.6, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (10.25, 8.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (10, 8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (10.06, 8.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "kit_buffer" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.kit_buffer"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "buffer"
+        custom int factory:param:slots = 8
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.2, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (41, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.45, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.45, 0.45, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.2, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.26, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-1.5, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-1.5, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (1.5, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (1.5, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "cnc_A" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.cnc_A"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "cnc"
+        custom string factory:param:cycle_time = "normal(170, 12)"
+        custom double factory:param:mtbf_h = 4
+        custom double factory:param:mttr_min = 20
+        custom double factory:param:scrap_rate = 0
+        custom int factory:param:tool_change_every = 50
+        custom double factory:param:tool_change_time = 240
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (2.2, 2.4, 2.1)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (45.5, -3.4, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (2.45, 2.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.8, 0.82, 0.85)]
+                double size = 1
+                float3 xformOp:scale = (2.2, 2.4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (2.26, 2.46, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "cnc_B" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.cnc_B"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "cnc"
+        custom string factory:param:cycle_time = "normal(170, 12)"
+        custom double factory:param:mtbf_h = 4
+        custom double factory:param:mttr_min = 20
+        custom double factory:param:scrap_rate = 0
+        custom int factory:param:tool_change_every = 50
+        custom double factory:param:tool_change_time = 240
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (2.2, 2.4, 2.1)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (45.5, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (2.45, 2.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.8, 0.82, 0.85)]
+                double size = 1
+                float3 xformOp:scale = (2.2, 2.4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (2.26, 2.46, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "cnc_C" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.cnc_C"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "cnc"
+        custom string factory:param:cycle_time = "normal(170, 12)"
+        custom double factory:param:mtbf_h = 4
+        custom double factory:param:mttr_min = 20
+        custom double factory:param:scrap_rate = 0
+        custom int factory:param:tool_change_every = 50
+        custom double factory:param:tool_change_time = 240
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (2.2, 2.4, 2.1)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (45.5, 3.4, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (2.45, 2.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.8, 0.82, 0.85)]
+                double size = 1
+                float3 xformOp:scale = (2.2, 2.4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (2.26, 2.46, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "deburr" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.deburr"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(42, 4)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3, 3, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (49.9, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.25, 3.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3, 3, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.06, 3.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "wash" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.wash"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(45, 3)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (8, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (57.2, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (8.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (8, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (8.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "cmm_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.cmm_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "inspection"
+        custom string factory:param:cycle_time = "normal(40, 4)"
+        custom double factory:param:fail_rate = 0.02
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (2, 2, 1.9)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (64, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (2.25, 2.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.3, 0.65, 0.55)]
+                double size = 1
+                float3 xformOp:scale = (2, 2, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (2.06, 2.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "machining_buffer" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.machining_buffer"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "buffer"
+        custom int factory:param:slots = 10
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (68.8, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.45, 0.45, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-1.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-1.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (1.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (1.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "conv_to_press" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conv_to_press"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 12
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (6, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (75.6, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (6.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (6, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (6.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-2.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-2.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (2.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (2.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "press_A" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.press_A"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "forge_press"
+        custom string factory:param:cycle_time = "normal(95, 6)"
+        custom double factory:param:die_change_time = 0
+        custom double factory:param:mtbf_h = 2.5
+        custom double factory:param:mttr_min = 15
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (2.4, 2.4, 2.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (81.6, -1.7, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (2.65, 2.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.55, 0.3, 0.25)]
+                double size = 1
+                float3 xformOp:scale = (2.4, 2.4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (2.46, 2.46, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "press_B" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.press_B"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "forge_press"
+        custom string factory:param:cycle_time = "normal(95, 6)"
+        custom double factory:param:die_change_time = 0
+        custom double factory:param:mtbf_h = 2.5
+        custom double factory:param:mttr_min = 15
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (2.4, 2.4, 2.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (81.6, 1.7, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (2.65, 2.65, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.55, 0.3, 0.25)]
+                double size = 1
+                float3 xformOp:scale = (2.4, 2.4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (2.46, 2.46, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "trim" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.trim"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(50, 4)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (86.6, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "conv_to_body" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conv_to_body"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 12
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (10, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (95.4, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (10.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (10, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (10.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-4.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-4.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (4.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (4.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_01" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_01"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (103.95, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "turn_1" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.turn_1"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 20
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (20, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 90)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (108.4, 11, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (20.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (20, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (20.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-9.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-9.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (9.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (9.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_02" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_02"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (104.85, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_03" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_03"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (99.55, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_04" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_04"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (94.25, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_05" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_05"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (88.95, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_06" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_06"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (83.65, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_07" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_07"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (78.35, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_08" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_08"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (73.05, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_09" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_09"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (67.75, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_10" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_10"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (62.45, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_11" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_11"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (57.15, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_12" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_12"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(52, 5)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3.5, 3.5, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (51.85, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.75, 3.75, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (3.5, 3.5, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.56, 3.56, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "sub_buffer" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.sub_buffer"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "buffer"
+        custom int factory:param:slots = 12
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4.800000000000001, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (45.9, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (5.05, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.45, 0.45, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.8, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.86, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-2.3000000000000003, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-2.3000000000000003, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (2.3000000000000003, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (2.3000000000000003, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "body_shop" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.body_shop"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(56, 3)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (30, 20, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (26.7, 22, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (30.25, 20.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (30, 20, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (30.06, 20.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "turn_2" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.turn_2"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 20
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (20, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 90)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0.4, 33, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (20.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (20, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (20.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-9.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-9.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (9.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (9.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "conv_to_paint" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conv_to_paint"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 16
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (12, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (8.2, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (12.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (12, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (12.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-5.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-5.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (5.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (5.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "paint_shop" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.paint_shop"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(54, 2)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (36, 18, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (34, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (36.25, 18.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (36, 18, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (36.06, 18.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "cure_oven" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.cure_oven"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(50, 1)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (24, 8, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (65.8, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (24.25, 8.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (24, 8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (24.06, 8.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "paint_buffer" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.paint_buffer"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "buffer"
+        custom int factory:param:slots = 12
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4.800000000000001, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (82, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (5.05, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.45, 0.45, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.8, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.86, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-2.3000000000000003, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-2.3000000000000003, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (2.3000000000000003, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (2.3000000000000003, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_01" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_01"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (88.2, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_02" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_02"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (94, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_03" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_03"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (99.8, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_04" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_04"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (105.6, 44, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "turn_3" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.turn_3"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 20
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (20, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 90)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (108.4, 55, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (20.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (20, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (20.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-9.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-9.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (9.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (9.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_05" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_05"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (104.6, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_06" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_06"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (98.8, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_07" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_07"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (93, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_08" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_08"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (87.2, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_09" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_09"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (81.4, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_10" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_10"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(55, 6)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (4, 4, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (75.6, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (4.25, 4.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (4, 4, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (4.06, 4.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "final_assembly_zone" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.final_assembly_zone"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(58, 4)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (24, 20, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (59.8, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (24.25, 20.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (24, 20, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (24.06, 20.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "conv_to_test" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.conv_to_test"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "conveyor"
+        custom double factory:param:accel = 0.5
+        custom double factory:param:drive_force = 300
+        custom double factory:param:friction = 1
+        custom double factory:param:gap = 0.05
+        custom int factory:param:slots = 12
+        custom double factory:param:speed = 0.2
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (8, 0.8, 0.8)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (42, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (8.25, 1.05, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.25, 0.27, 0.3)]
+                double size = 1
+                float3 xformOp:scale = (8, 0.8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (8.06, 0.86, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (-3.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (-3.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (3.9, 0, 0.8)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (3.9, 0, 1.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "eol_test_A" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.eol_test_A"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "inspection"
+        custom string factory:param:cycle_time = "normal(105, 10)"
+        custom double factory:param:fail_rate = 0.015
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3, 3, 1.9)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (34.7, 68, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.25, 3.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.3, 0.65, 0.55)]
+                double size = 1
+                float3 xformOp:scale = (3, 3, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.06, 3.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "eol_test_B" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.eol_test_B"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "inspection"
+        custom string factory:param:cycle_time = "normal(105, 10)"
+        custom double factory:param:fail_rate = 0.015
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (3, 3, 1.9)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (34.7, 64, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (3.25, 3.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.3, 0.65, 0.55)]
+                double size = 1
+                float3 xformOp:scale = (3, 3, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (3.06, 3.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.9)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 1.15)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "packing" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.packing"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(40, 4)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (10, 8, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (26.4, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (10.25, 8.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (10, 8, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (10.06, 8.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+
+    def Xform "shipping" (
+        kind = "component"
+    )
+    {
+        custom int factory:buffer = 0
+        custom string factory:configRef = "cell.stations.shipping"
+        custom int factory:count = 1
+        custom string factory:equipmentType = "blackbox"
+        custom string factory:param:cycle_time = "normal(30, 3)"
+        custom bool factory:show3d = 0
+        custom double3 factory:size = (18, 14, 0.05)
+        float3 xformOp:rotateXYZ = (0, 0, 180)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (10.6, 66, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Xform "Geo"
+        {
+            def Cube "Status" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                rel material:binding = </Plant/Looks/Status_IDLE>
+                color3f[] primvars:displayColor = [(0.5, 0.5, 0.5)]
+                double size = 1
+                float3 xformOp:scale = (18.25, 14.25, 0.004)
+                double3 xformOp:translate = (0, 0, 0.002)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Tile"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.12, 0.12, 0.14)]
+                double size = 1
+                float3 xformOp:scale = (18, 14, 0.05)
+                double3 xformOp:translate = (0, 0, 0.025)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+
+            def Cube "Border"
+            {
+                float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+                color3f[] primvars:displayColor = [(0.85, 0.65, 0.2)]
+                double size = 1
+                float3 xformOp:scale = (18.06, 14.06, 0.02)
+                double3 xformOp:translate = (0, 0, 0.01)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def "Ports"
+        {
+            def Xform "in_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "in_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_lowered"
+            {
+                double3 xformOp:translate = (0, 0, 0.05)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Xform "out_raised"
+            {
+                double3 xformOp:translate = (0, 0, 0.3)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+}
+
+def "Environment"
+{
+    def DomeLight "Dome"
+    {
+        float inputs:intensity = 250
+    }
+
+    def DistantLight "Sun"
+    {
+        float inputs:angle = 2
+        float inputs:intensity = 900
+        float3 xformOp:rotateXYZ = (-50, 0, 30)
+        double3 xformOp:translate = (0, 25, 12)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+    }
+
+    def Cube "Floor"
+    {
+        float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+        color3f[] primvars:displayColor = [(0.22, 0.24, 0.27)]
+        double size = 1
+        float3 xformOp:scale = (80, 80, 0.02)
+        double3 xformOp:translate = (0, 0, -0.01)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+    }
+}
+
+over "OmniverseKit_Front" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 5000
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -50000)
+    token projection = "orthographic"
+    float verticalAperture = 5000
+    float3 xformOp:rotateXYZ = (90, -1.2722219e-14, 90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (50000, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Right" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 5000
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -50000)
+    token projection = "orthographic"
+    float verticalAperture = 5000
+    float3 xformOp:rotateXYZ = (90, 7.06225e-31, -1.2722219e-14)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, -50000, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Top" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 5000
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -50000)
+    token projection = "orthographic"
+    float verticalAperture = 5000
+    float3 xformOp:rotateXYZ = (1.2722219e-14, -7.016709e-15, -90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 50000)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def PhysicsScene "PhysicsScene" (
+    prepend apiSchemas = ["NewtonSceneAPI", "PhysxSceneAPI"]
+)
+{
+    vector3f physics:gravityDirection = (0, 0, -1)
+    float physics:gravityMagnitude = 9.81
+}
+

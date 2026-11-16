@@ -1,0 +1,6 @@
+# Capital option A: a faster handling robot.
+name: faster-robot
+description: Robot handling time cut by 40 percent.
+extends: baseline.yaml
+overrides:
+  cell.stations.robot.params.handling_time: {dist: triangular, low: 12, mode: 15, high: 21}

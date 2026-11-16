@@ -1,0 +1,6 @@
+# Capital option B: a second CNC.
+name: second-cnc
+description: Two CNCs in parallel. Nothing else changes.
+extends: baseline.yaml
+overrides:
+  cell.stations.cnc.count: 2
